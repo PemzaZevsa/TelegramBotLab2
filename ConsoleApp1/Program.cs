@@ -178,15 +178,22 @@ async Task<Message> MesageReplyer(Update update, CancellationToken cancellationT
 
     if (update.CallbackQuery.Data == "Діаграма")
     {
-        return await botClient.SendTextMessageAsync(
-        chatId: update.CallbackQuery.From.Id,
-        text: "Діаграмма класів",
-        disableNotification: true,
-        replyMarkup: new InlineKeyboardMarkup(
-            InlineKeyboardButton.WithUrl(
-            text:"Lucid.app (потрібно зареєструватися на сайті)." ,
-            url:"https://lucid.app/lucidchart/c216c932-ed99-4d75-971e-953ba558b242/edit?viewport_loc=-134%2C356%2C2616%2C1200%2C0_0&invitationId=inv_6c4f668c-c05a-4054-85f0-1fe9c4167e4c")),
-        cancellationToken: cancellationToken);
+        return await botClient.SendPhotoAsync(
+    chatId: update.CallbackQuery.From.Id,
+    photo: InputFile.FromUri("https://raw.githubusercontent.com/PemzaZevsa/TelegramBotLab2/master/Pics/Diogram.bmp"),
+    caption: "<b>Ara bird</b>. <i>Source</i>: <a href=\"https://pixabay.com\">Pixabay</a>",
+    parseMode: ParseMode.Html,
+    cancellationToken: cancellationToken);
+
+        //return await botClient.SendTextMessageAsync(
+        //chatId: update.CallbackQuery.From.Id,
+        //text: "Діаграмма класів",
+        //disableNotification: true,
+        //replyMarkup: new InlineKeyboardMarkup(
+        //    InlineKeyboardButton.WithUrl(
+        //    text:"Lucid.app (потрібно зареєструватися на сайті)." ,
+        //    url:"https://lucid.app/lucidchart/c216c932-ed99-4d75-971e-953ba558b242/edit?viewport_loc=-134%2C356%2C2616%2C1200%2C0_0&invitationId=inv_6c4f668c-c05a-4054-85f0-1fe9c4167e4c")),
+        //cancellationToken: cancellationToken);
     }
 
 

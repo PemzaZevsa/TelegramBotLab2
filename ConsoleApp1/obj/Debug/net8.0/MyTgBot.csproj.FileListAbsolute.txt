@@ -16,3 +16,4 @@ C:\Users\Pemza\source\repos\DOTNET_Lab2\ConsoleApp1\obj\Debug\net8.0\refint\MyTg
 C:\Users\Pemza\source\repos\DOTNET_Lab2\ConsoleApp1\obj\Debug\net8.0\MyTgBot.pdb
 C:\Users\Pemza\source\repos\DOTNET_Lab2\ConsoleApp1\obj\Debug\net8.0\MyTgBot.genruntimeconfig.cache
 C:\Users\Pemza\source\repos\DOTNET_Lab2\ConsoleApp1\obj\Debug\net8.0\ref\MyTgBot.dll
+C:\Users\Pemza\source\repos\DOTNET_Lab2\ConsoleApp1\obj\Debug\net8.0\MyTgBot.sourcelink.json

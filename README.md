@@ -9,4 +9,4 @@
 
 Посилання на репозиторій курсової роботи: [Курсова робота](https://github.com/PemzaZevsa/OOP_Cursova)
 
-![Рис. 1 Діаграма класів](Pics/Diogram.bmp)
+![Рис. 1 Діаграма класів](Pics/Diogram.jpg)

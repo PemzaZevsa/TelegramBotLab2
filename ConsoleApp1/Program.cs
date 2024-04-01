@@ -14,28 +14,27 @@ InlineKeyboardMarkup baseInlineKeyboard = new(new[]
 {
         new []
         {
-            InlineKeyboardButton.WithCallbackData(text: "Про бота ℹ️", callbackData: "Про бота"),
-            InlineKeyboardButton.WithCallbackData(text:  "Курсова робота 📒", callbackData:  "Course menu"),
+            InlineKeyboardButton.WithCallbackData(text: "Про бота ℹ️", callbackData: "AboutBot"),
+            InlineKeyboardButton.WithCallbackData(text:  "Курсова робота 📒", callbackData:  "CourseMenu"),
         },
-        // second row
-        new []
-        {
-            InlineKeyboardButton.WithCallbackData(text: "Налаштування ⚙️", callbackData: "Налаштування"),
-        },
+        //new []
+        //{
+        //    InlineKeyboardButton.WithCallbackData(text: "Налаштування ⚙️", callbackData: "Налаштування"),
+        //},
     });
 
 InlineKeyboardMarkup courseWorkInlineKeyboard = new(new[]
 {
         new []
         {
-            InlineKeyboardButton.WithCallbackData(text: "Про курсову ℹ️", callbackData: "Про курсову"),
-            InlineKeyboardButton.WithCallbackData(text:  "Класи 📒", callbackData:  "Класи"),
+            InlineKeyboardButton.WithCallbackData(text: "Про курсову ℹ️", callbackData: "AboutCourseWork"),
+            InlineKeyboardButton.WithCallbackData(text:  "Класи 📒", callbackData:  "ClassesMenu"),
         },
         // second row
         new []
         {
-            InlineKeyboardButton.WithCallbackData(text: "Демонстрація 💡", callbackData: "Демонстрація"),
-             InlineKeyboardButton.WithCallbackData(text: "Повернутися ➡️", callbackData: "Головна"),
+            InlineKeyboardButton.WithCallbackData(text: "Демонстрація 💡", callbackData: "DemoMenu"),
+             InlineKeyboardButton.WithCallbackData(text: "Повернутися ➡️", callbackData: "MainMenu"),
         },
     });
 
@@ -43,13 +42,13 @@ InlineKeyboardMarkup clasessInlineKeyboard = new(new[]
 {
         new []
         {
-            InlineKeyboardButton.WithCallbackData(text: "Структура 🗂", callbackData: "Структура"),
-            InlineKeyboardButton.WithCallbackData(text: "Діаграма 📊", callbackData: "Діаграма"),
+            InlineKeyboardButton.WithCallbackData(text: "Структура 🗂", callbackData: "Structure"),
+            InlineKeyboardButton.WithCallbackData(text: "Діаграма 📊", callbackData: "Diagram"),
         },
         // second row
         new []
         {
-             InlineKeyboardButton.WithCallbackData(text: "Повернутися ➡️", callbackData: "Course menu"),
+             InlineKeyboardButton.WithCallbackData(text: "Повернутися ➡️", callbackData: "CourseMenu"),
         },
     });
 
@@ -57,17 +56,39 @@ InlineKeyboardMarkup demoInlineKeyboard = new(new[]
 {
         new []
         {
-            InlineKeyboardButton.WithCallbackData(text: "Код 🖥", callbackData: "Код"),
-            InlineKeyboardButton.WithCallbackData(text: "Скріни 🖼", callbackData:  "Скріни"),
+            InlineKeyboardButton.WithCallbackData(text: "Код 🖥", callbackData: "Code"),
+            InlineKeyboardButton.WithCallbackData(text: "Скріни 🖼", callbackData:  "Screens"),
         },
         // second row
         new []
         {
-             InlineKeyboardButton.WithCallbackData(text: "Повернутися ➡️", callbackData: "Course menu"),
+             InlineKeyboardButton.WithCallbackData(text: "Повернутися ➡️", callbackData: "CourseMenu"),
         },
     });
 
+InlineKeyboardMarkup diagramInlineKeyboard = new InlineKeyboardMarkup(new[] {
+        new[]
+        {
+            InlineKeyboardButton.WithUrl(
+            text: "Lucid.app (потрібно зареєструватися на сайті).",
+         url: "https://lucid.app/lucidchart/c216c932-ed99-4d75-971e-953ba558b242/edit?viewport_loc=-134%2C356%2C2616%2C1200%2C0_0&invitationId=inv_6c4f668c-c05a-4054-85f0-1fe9c4167e4c"),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(text: "Структура 🗂", callbackData: "Structure"),
+            InlineKeyboardButton.WithCallbackData(text: "Діаграма 📊", callbackData: "Diagram"),
+        },
+        // second row
+        new[]
+        {
+             InlineKeyboardButton.WithCallbackData(text: "Повернутися ➡️", callbackData: "CourseMenu"),
+        },
+
+            });
+
+#region APItoken
 var botClient = new TelegramBotClient("6569703281:AAFX7AovCc58ZKunG__NPDfukXLLTeiF564");
+#endregion
 
 using CancellationTokenSource cts = new();
 
@@ -96,7 +117,7 @@ cts.Cancel();
 
 async Task<Message> MesageReplyer(Update update, CancellationToken cancellationToken)
 {
-    if (update.CallbackQuery.Data == "Про бота")
+    if (update.CallbackQuery.Data == "AboutBot")
     {
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
@@ -106,7 +127,7 @@ async Task<Message> MesageReplyer(Update update, CancellationToken cancellationT
         cancellationToken: cancellationToken);
     }
 
-    if (update.CallbackQuery.Data == "Course menu")
+    if (update.CallbackQuery.Data == "CourseMenu")
     {
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
@@ -116,27 +137,17 @@ async Task<Message> MesageReplyer(Update update, CancellationToken cancellationT
         cancellationToken: cancellationToken);
     }
 
-    if (update.CallbackQuery.Data == "Налаштування")
+    if (update.CallbackQuery.Data == "AboutCourseWork")
     {
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
-        text: "Немає їх",
-        disableNotification: true,
-         replyMarkup: baseInlineKeyboard,
-        cancellationToken: cancellationToken);
-    }
-
-    if (update.CallbackQuery.Data == "Про курсову")
-    {
-        return await botClient.SendTextMessageAsync(
-        chatId: update.CallbackQuery.From.Id,
-        text: "Всю діаграму можно умовно розділити на “користувачі” та “курси”.\r\n\r\nГоловний класс у розділі “користувачі” - абстрактний класс User (користувач): він реалізує вбудований інтерфейс IComparble. \r\nВід абстрактного класу наслідуються чотири класси: UnAuthorised, Authorised, Teacher та Admin.\r\nUnAuthorised - найпростіший, використовується перед тим, як користувач залогиниться/авторизується. Не має якогось явного функціоналу.\r\nAuthorised - звичайний користувач. Може покупати курси та проходити їх. Реалізує інтерфейс IStudyable.\r\nTeacher - вчитель. Відрізняється від звичайного користувача тим, що не може проходити курси. Реалізує інтерфейс ITeacheble.\r\nAdmin - адміністратор. Також може створювати курси, але має більш обширний функціонал: може дивитися статистику курсів та створювати користувачів. Реалізує інтерфейс ITeacheble.\r\n\r\nУ розділі курси основний класс - Course (курс). Він має багато характеристик, одна з яких множина класу Module (модуль). У свою чергу один модуль містить у собі множину класу Lesson (урок, заняття).\r\n\r\nЦі два розділи об’єднує у собі класс CoursesApp (клас застосунку).\r\n\r\nПоміж класів є інтерфейси IStudyable та ITeacheble:\r\nIStudyable містить функціонал навчання.\r\nITeacheble містить функціонал створення, редагування та моніторинг створених курсів\r\n",
+        text: "Тема курсової роботи: \"Платні навчальні курси\" \nКурсова виконана на мові C# із застосуванням WindowsForms",
         disableNotification: true,
          replyMarkup: courseWorkInlineKeyboard,
         cancellationToken: cancellationToken);
     }
 
-    if (update.CallbackQuery.Data == "Класи")
+    if (update.CallbackQuery.Data == "ClassesMenu")
     {
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
@@ -146,54 +157,45 @@ async Task<Message> MesageReplyer(Update update, CancellationToken cancellationT
         cancellationToken: cancellationToken);
     }
 
-    if (update.CallbackQuery.Data == "Демонстрація")
+    if (update.CallbackQuery.Data == "DemoMenu")
     {
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
-        text: "d",
+        text: "На жаль, курсова у процесі розробки, тому секція код та скріншоти не працюють👨‍💻",
         disableNotification: true,
         replyMarkup: demoInlineKeyboard,
         cancellationToken: cancellationToken);
     }
 
-    if (update.CallbackQuery.Data == "Головна")
+    if (update.CallbackQuery.Data == "MainMenu")
     {
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
-        text:"Головна сторінка",
+        text: "Головна сторінка",
         disableNotification: true,
         replyMarkup: baseInlineKeyboard,
         cancellationToken: cancellationToken);
     }
 
-    if (update.CallbackQuery.Data == "Структура")
+    if (update.CallbackQuery.Data == "Structure")
     {
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
-        text: "Всю діаграму можно умовно розділити на “користувачі” та “курси”.\r\n\r\nГоловний класс у розділі “користувачі” - абстрактний класс User (користувач): він реалізує вбудований інтерфейс IComparble. \r\nВід абстрактного класу наслідуються чотири класси: UnAuthorised, Authorised, Teacher та Admin.\r\nUnAuthorised - найпростіший, використовується перед тим, як користувач залогиниться/авторизується. Не має якогось явного функціоналу.\r\nAuthorised - звичайний користувач. Може покупати курси та проходити їх. Реалізує інтерфейс IStudyable.\r\nTeacher - вчитель. Відрізняється від звичайного користувача тим, що не може проходити курси. Реалізує інтерфейс ITeacheble.\r\nAdmin - адміністратор. Також може створювати курси, але має більш обширний функціонал: може дивитися статистику курсів та створювати користувачів. Реалізує інтерфейс ITeacheble.\r\n\r\nУ розділі курси основний класс - Course (курс). Він має багато характеристик, одна з яких множина класу Module (модуль). У свою чергу один модуль містить у собі множину класу Lesson (урок, заняття).\r\n\r\nЦі два розділи об’єднує у собі класс CoursesApp (клас застосунку).\r\n\r\nПоміж класів є інтерфейси IStudyable та ITeacheble:\r\nIStudyable містить функціонал навчання.\r\nITeacheble містить функціонал створення, редагування та моніторинг створених курсів\r\n",
+        text: "Всю діаграму можно умовно розділити на “користувачі” та “курси”.\r\n\r\nГоловний класс у розділі “користувачі” - абстрактний класс User (користувач): він реалізує вбудований інтерфейс IComparble. \r\nВід абстрактного класу наслідуються чотири класси: UnAuthorised, Authorised, Teacher та Admin.\r\n - UnAuthorised - найпростіший, використовується перед тим, як користувач залогиниться/авторизується. Не має якогось явного функціоналу.\r\n - Authorised - звичайний користувач. Може покупати курси та проходити їх. Реалізує інтерфейс IStudyable.\r\n - Teacher - вчитель. Відрізняється від звичайного користувача тим, що не може проходити курси. Реалізує інтерфейс ITeacheble.\r\n - Admin - адміністратор. Також може створювати курси, але має більш обширний функціонал: може дивитися статистику курсів та створювати користувачів. Реалізує інтерфейс ITeacheble.\r\n\r\nУ розділі курси основний класс - Course (курс). Він має багато характеристик, одна з яких множина класу Module (модуль). У свою чергу один модуль містить у собі множину класу Lesson (урок, заняття).\r\n\r\nЦі два розділи об’єднує у собі класс CoursesApp (клас застосунку).\r\n\r\n\nПоміж класів є інтерфейси IStudyable та ITeacheble:\r\n - IStudyable містить функціонал навчання.\r\n - ITeacheble містить функціонал створення, редагування та моніторинг створених курсів\r\n",
         disableNotification: true,
         replyMarkup: clasessInlineKeyboard,
         cancellationToken: cancellationToken);
     }
 
-    if (update.CallbackQuery.Data == "Діаграма")
+    if (update.CallbackQuery.Data == "Diagram")
     {
         return await botClient.SendPhotoAsync(
-    chatId: update.CallbackQuery.From.Id,
-    photo: InputFile.FromUri("https://raw.githubusercontent.com/PemzaZevsa/TelegramBotLab2/master/Pics/Diogram.bmp"),
-    caption: "<b>Ara bird</b>. <i>Source</i>: <a href=\"https://pixabay.com\">Pixabay</a>",
-    parseMode: ParseMode.Html,
-    cancellationToken: cancellationToken);
-
-        //return await botClient.SendTextMessageAsync(
-        //chatId: update.CallbackQuery.From.Id,
-        //text: "Діаграмма класів",
-        //disableNotification: true,
-        //replyMarkup: new InlineKeyboardMarkup(
-        //    InlineKeyboardButton.WithUrl(
-        //    text:"Lucid.app (потрібно зареєструватися на сайті)." ,
-        //    url:"https://lucid.app/lucidchart/c216c932-ed99-4d75-971e-953ba558b242/edit?viewport_loc=-134%2C356%2C2616%2C1200%2C0_0&invitationId=inv_6c4f668c-c05a-4054-85f0-1fe9c4167e4c")),
-        //cancellationToken: cancellationToken);
+        chatId: update.CallbackQuery.From.Id,
+        photo: InputFile.FromUri("https://raw.githubusercontent.com/PemzaZevsa/TelegramBotLab2/master/Pics/Diogram.jpg"),
+        caption: "<b>Діаграма класів</b>",
+        replyMarkup: diagramInlineKeyboard,
+        parseMode: ParseMode.Html,
+        cancellationToken: cancellationToken);
     }
 
 
@@ -203,44 +205,43 @@ async Task<Message> MesageReplyer(Update update, CancellationToken cancellationT
     disableNotification: true,
     cancellationToken: cancellationToken);
 }
-async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+
+async Task<Message> TextMessageReplyer(Update update, CancellationToken cancellationToken)
 {
-    string replyText = "";
-
-
-    if (update.Type == UpdateType.CallbackQuery)
-    {
-        var replMessage = MesageReplyer(update, cancellationToken).Result;
-
-        Console.WriteLine($"replyed: {replMessage.Text}");
-        return;
-    }
-
-    // Only process Message updates: https://core.telegram.org/bots/api#message
-    if (update.Message is not { } message)
-        return;
-    //Only process text messages
-    if (message.Text is not { } messageText)
-        return;
-    //var message = update.Message;
-    //var messageText = message?.Text;
-
-    var chatId = message.Chat.Id;
-
-    replyText = messageText;
+    string messageText = update.Message.Text;
+    var chatId = update.Message.Chat.Id;
 
     if (messageText == "/start")
     {
-        await botClient.SendTextMessageAsync(
+        return await botClient.SendTextMessageAsync(
         chatId: chatId,
         text: "Вітаю, цей бот був створений для опису функціоналу курсового проєкта. В описі бота є посилання на GitHub репозиторій проєкта.\nПосилання на GitHub репозиторій цього телеграм-бота також є у описі бота ",
         disableNotification: true,
         replyMarkup: baseInlineKeyboard,
         cancellationToken: cancellationToken);
     }
+    else if (messageText == "/help")
+    {
+        return await botClient.SendTextMessageAsync(
+        chatId: chatId,
+        text: "/start - Отримати початкове повідомлення\n/link - Отримати посилання на GitHub репозиторій бота",
+        disableNotification: true,
+        replyMarkup: baseInlineKeyboard,
+        cancellationToken: cancellationToken);
+    }
+    else if (messageText == "/link")
+    {
+        return await botClient.SendTextMessageAsync(
+        chatId: chatId,
+        parseMode: ParseMode.Html,
+        text: "<a href=\"https://github.com/PemzaZevsa/TelegramBotLab2\">Посилання на GitHub репозиторій бота</a>",
+        disableNotification: true,
+        replyMarkup: baseInlineKeyboard,
+        cancellationToken: cancellationToken);
+    }
     else
     {
-        message = await botClient.SendTextMessageAsync(
+        return await botClient.SendTextMessageAsync(
         chatId: chatId,
         text: "Не вірна команда",
         replyToMessageId: update?.Message?.MessageId,
@@ -252,8 +253,37 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
         //     url:"",
         cancellationToken: cancellationToken);
     }
+}
+async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+{
+    string replyText = "";
 
-    ConsoleLogging(message);
+    if (update.Type == UpdateType.CallbackQuery)
+    {
+        var replMessage = MesageReplyer(update, cancellationToken).Result;
+
+        Console.WriteLine($"Name : {update.CallbackQuery.From.FirstName} Chat Id : {update.CallbackQuery.From.Id} at {update.CallbackQuery.Message.Date}");
+        return;
+    }
+    else
+    {
+        // Only process Message updates: https://core.telegram.org/bots/api#message
+        if (update.Message is not { } message)
+            return;
+        //Only process text messages
+        if (message.Text is not { } messageText)
+            return;
+        //var message = update.Message;
+        //var messageText = message?.Text;
+
+        var chatId = message.Chat.Id;
+
+        replyText = messageText;
+
+        var replMessage = TextMessageReplyer(update, cancellationToken).Result;
+
+        ConsoleLogging(message);
+    }
 }
 
 void ConsoleLogging(Message message)
@@ -262,15 +292,10 @@ void ConsoleLogging(Message message)
 
     Console.Write(
       $"{message.From?.FirstName} sent message {message.MessageId} : {message.Text} " +
-      $"to chat {message.Chat.Id} at ");
+      $"to chat {message.Chat.Id} at {message.Date}.\n");
 
-    Console.ForegroundColor = ConsoleColor.Cyan;
-    Console.Write($"{message.Date}. ");
-
-    Console.ForegroundColor = ConsoleColor.Gray;
-    Console.Write(
-      $"It is a reply to message {message.ReplyToMessage?.MessageId} : {message.ReplyToMessage?.Text} " +
-      $"and has {message.Entities?.Length} message entities.\n");
+    //Console.Write($"It is a reply to message {message.ReplyToMessage?.MessageId} : {message.ReplyToMessage?.Text} " +
+    //  $"and has {message.Entities?.Length} message entities.\n");
 }
 
 Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)

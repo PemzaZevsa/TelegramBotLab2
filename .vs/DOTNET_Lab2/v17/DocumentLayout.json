@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{11D1B718-9230-49FE-8346-58246B59DE92}|ConsoleApp1\\MyTgBot.csproj|c:\\users\\pemza\\source\\repos\\dotnet_lab2\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{11D1B718-9230-49FE-8346-58246B59DE92}|ConsoleApp1\\MyTgBot.csproj|solutionrelative:consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11D1B718-9230-49FE-8346-58246B59DE92}|ConsoleApp1\\MyTgBot.csproj|C:\\Users\\Pemza\\source\\repos\\DOTNET_Lab2\\consoleapp1\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11D1B718-9230-49FE-8346-58246B59DE92}|ConsoleApp1\\MyTgBot.csproj|solutionrelative:consoleapp1\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 235,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,13 +34,25 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\Pemza\\source\\repos\\DOTNET_Lab2\\ConsoleApp1\\Course.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Course.cs",
+              "ToolTip": "C:\\Users\\Pemza\\source\\repos\\DOTNET_Lab2\\ConsoleApp1\\Course.cs",
+              "RelativeToolTip": "ConsoleApp1\\Course.cs",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAWwGIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-07T09:41:04.184Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Pemza\\source\\repos\\DOTNET_Lab2\\ConsoleApp1\\Program.cs",
               "RelativeDocumentMoniker": "ConsoleApp1\\Program.cs",
               "ToolTip": "C:\\Users\\Pemza\\source\\repos\\DOTNET_Lab2\\ConsoleApp1\\Program.cs",
               "RelativeToolTip": "ConsoleApp1\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4BAAAuAAAA",
+              "ViewState": "AQIAAHgBAAAAAAAAAAAmwNYBAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-25T15:27:52.831Z",
               "EditorCaption": ""

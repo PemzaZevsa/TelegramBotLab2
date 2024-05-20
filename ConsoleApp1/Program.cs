@@ -140,6 +140,8 @@ catch (Exception e)
 {
 }
 
+//courses = courses.Take(16).ToList();
+
 using CancellationTokenSource cts = new();
 
 // StartReceiving does not block the caller thread. Receiving is done on the ThreadPool.
@@ -255,7 +257,7 @@ async Task<Message> ButtonMesageReplyer(Update update, CancellationToken cancell
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
         parseMode: ParseMode.Html,
-        text: "Курси:\n" + str,
+        text: $"<b>Курси {counter}-{counter+5}:</b>\n\n" + str,
         disableNotification: true,
         replyMarkup: coursesInlineKeyboard,
         cancellationToken: cancellationToken);
@@ -268,7 +270,7 @@ async Task<Message> ButtonMesageReplyer(Update update, CancellationToken cancell
         return await botClient.SendTextMessageAsync(
         chatId: update.CallbackQuery.From.Id,
         parseMode: ParseMode.Html,
-        text: "Курси:\n" + str,
+        text: $"<b>Курси {counter}-{counter + 5}:</b>\n\n" + str,
         disableNotification: true,
         replyMarkup: coursesInlineKeyboard,
         cancellationToken: cancellationToken);
@@ -278,73 +280,96 @@ async Task<Message> ButtonMesageReplyer(Update update, CancellationToken cancell
     {
         try
         {
-            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{courses[counter].PicturePath}");
+            var thisCourse = courses[counter];
+            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{thisCourse.PicturePath}");
 
             return await botClient.SendPhotoAsync(
             chatId: update.CallbackQuery.From.Id,
             parseMode: ParseMode.Html,
-            caption: $"{courses[counter].Name}\n\nОпис:{courses[counter].Description}\nЦіна: {courses[counter].Cost}\n",
+            caption: $"<b>{thisCourse.Name}</b>\n\n<i>{thisCourse.Description}</i>\n\nТеги: {string.Join(", ", thisCourse.Tegs)}\nАвтор: {thisCourse.AuthorName}  {thisCourse.AuthorSurname}\nЦіна: {thisCourse.Cost}\nРейтинг: {thisCourse.Rating}({thisCourse.RatingsAmount})\nПродана кількість: {thisCourse.BoughtCourseAmount}",
             photo: InputFile.FromStream(stream: stream, fileName: "icob.bmp"),
             disableNotification: true,
             cancellationToken: cancellationToken);
         }
         catch (Exception)
         {
+            return await botClient.SendTextMessageAsync(
+            chatId: update.CallbackQuery.From.Id,
+            text: "Помилка: такого курсу немає",
+            disableNotification: true,
+            cancellationToken: cancellationToken);
         }
     }
     if (update.CallbackQuery.Data == "N2")
     {
         try
         {
-            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{courses[counter + 1].PicturePath}");
+            var thisCourse = courses[counter + 1];
+            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{thisCourse.PicturePath}");
 
             return await botClient.SendPhotoAsync(
             chatId: update.CallbackQuery.From.Id,
             parseMode: ParseMode.Html,
-            caption: $"{courses[counter + 1].Name}\n\nОпис:{courses[counter].Description}\nЦіна: {courses[counter + 1].Cost}\n",
+            caption: $"<b>{thisCourse.Name}</b>\n\n<i>{thisCourse.Description}</i>\n\nТеги: {string.Join(", ", thisCourse.Tegs)}\nАвтор: {thisCourse.AuthorName}  {thisCourse.AuthorSurname}\nЦіна: {thisCourse.Cost}\nРейтинг: {thisCourse.Rating}({thisCourse.RatingsAmount})\nПродана кількість: {thisCourse.BoughtCourseAmount}",
             photo: InputFile.FromStream(stream: stream, fileName: "icob.bmp"),
             disableNotification: true,
             cancellationToken: cancellationToken);
         }
         catch (Exception)
         {
+            return await botClient.SendTextMessageAsync(
+            chatId: update.CallbackQuery.From.Id,
+            text: "Помилка: такого курсу немає",
+            disableNotification: true,
+            cancellationToken: cancellationToken);
         }
     }
     if (update.CallbackQuery.Data == "N3")
     {
         try
         {
-            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{courses[counter + 2].PicturePath}");
+            var thisCourse = courses[counter + 2];
+            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{thisCourse.PicturePath}");
 
             return await botClient.SendPhotoAsync(
             chatId: update.CallbackQuery.From.Id,
             parseMode: ParseMode.Html,
-            caption: $"{courses[counter + 2].Name}\n\nОпис:{courses[counter + 2].Description}\nЦіна: {courses[counter + 2].Cost}\n",
+            caption: $"<b>{thisCourse.Name}</b>\n\n<i>{thisCourse.Description}</i>\n\nТеги: {string.Join(", ", thisCourse.Tegs)}\nАвтор: {thisCourse.AuthorName}  {thisCourse.AuthorSurname}\nЦіна: {thisCourse.Cost}\nРейтинг: {thisCourse.Rating}({thisCourse.RatingsAmount})\nПродана кількість: {thisCourse.BoughtCourseAmount}",
             photo: InputFile.FromStream(stream: stream, fileName: "icob.bmp"),
             disableNotification: true,
             cancellationToken: cancellationToken);
         }
         catch (Exception)
         {
+            return await botClient.SendTextMessageAsync(
+            chatId: update.CallbackQuery.From.Id,
+            text: "Помилка: такого курсу немає",
+            disableNotification: true,
+            cancellationToken: cancellationToken);
         }
     }
     if (update.CallbackQuery.Data == "N4")
     {
         try
         {
-            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{courses[counter + 3].PicturePath}");
+            var thisCourse = courses[counter + 3];
+            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{thisCourse.PicturePath}");
 
             return await botClient.SendPhotoAsync(
             chatId: update.CallbackQuery.From.Id,
             parseMode: ParseMode.Html,
-            caption: $"{courses[counter + 3].Name}\n\nОпис:{courses[counter + 3].Description}\nЦіна: {courses[counter + 3].Cost}\n",
+            caption: $"<b>{thisCourse.Name}</b>\n\n<i>{thisCourse.Description}</i>\n\nТеги: {string.Join(", ", thisCourse.Tegs)}\nАвтор: {thisCourse.AuthorName}  {thisCourse.AuthorSurname}\nЦіна: {thisCourse.Cost}\nРейтинг: {thisCourse.Rating}({thisCourse.RatingsAmount})\nПродана кількість: {thisCourse.BoughtCourseAmount}",
             photo: InputFile.FromStream(stream: stream, fileName: "icob.bmp"),
             disableNotification: true,
             cancellationToken: cancellationToken);
         }
         catch (Exception)
         {
-
+            return await botClient.SendTextMessageAsync(
+            chatId: update.CallbackQuery.From.Id,
+            text: "Помилка: такого курсу немає",
+            disableNotification: true,
+            cancellationToken: cancellationToken);
         }
         
     }
@@ -352,19 +377,24 @@ async Task<Message> ButtonMesageReplyer(Update update, CancellationToken cancell
     {
         try
         {
-            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{courses[counter + 4].PicturePath}");
+            var thisCourse = courses[counter + 4];
+            await using Stream stream = System.IO.File.OpenRead($"C:\\Users\\Pemza\\source\\repos\\CourseworkOOP\\OOP_Cursova\\CourseworkOOP\\CourseworkOOP\\bin\\Debug\\net8.0-windows\\{thisCourse.PicturePath}");
 
             return await botClient.SendPhotoAsync(
             chatId: update.CallbackQuery.From.Id,
             parseMode: ParseMode.Html,
-            caption: $"{courses[counter + 4].Name}\n\nОпис:{courses[counter + 4].Description}\nЦіна: {courses[counter + 4].Cost}\n",
+            caption: $"<b>{thisCourse.Name}</b>\n\n<i>{thisCourse.Description}</i>\n\nТеги: {string.Join(", ", thisCourse.Tegs)}\nАвтор: {thisCourse.AuthorName}  {thisCourse.AuthorSurname}\nЦіна: {thisCourse.Cost}\nРейтинг: {thisCourse.Rating}({thisCourse.RatingsAmount})\nПродана кількість: {thisCourse.BoughtCourseAmount}",
             photo: InputFile.FromStream(stream: stream, fileName: "icob.bmp"),
             disableNotification: true,
             cancellationToken: cancellationToken);
         }
         catch (Exception)
         {
-            
+            return await botClient.SendTextMessageAsync(
+            chatId: update.CallbackQuery.From.Id,
+            text: "Помилка: такого курсу немає",
+            disableNotification: true,
+            cancellationToken: cancellationToken);
         }
         
     }
@@ -411,12 +441,13 @@ async Task<Message> TextCommandMessageReplyer(Update update, CancellationToken c
     }
     else if (messageText == "/courses")
     {
+        counter = -5;
         string str = await GetCourseText();        
         
         return await botClient.SendTextMessageAsync(
         chatId: chatId,
         parseMode: ParseMode.Html,
-        text: "Курси:\n"+ str,
+        text: $"<b>Курси {counter}-{counter + 5}:</b>\n\n" + str,
         disableNotification: true,
         replyMarkup: coursesInlineKeyboard,
         cancellationToken: cancellationToken);
@@ -452,30 +483,22 @@ async Task<Message> CourseReplier(Update update, CancellationToken cancellationT
     }
 
     Message message = new Message();
-    //message.Chat = new Chat() { Id = chatId };
     message.Text = str;
     return message;
-
-    //return await botClient.SendTextMessageAsync(
-    //chatId: chatId,
-    //text: "Курси:\n" + str,
-    //disableNotification: true,
-    //replyMarkup: coursesInlineKeyboard,
-    //cancellationToken: cancellationToken);
 }
 
 async Task<string> GetCourseText(bool foward = true)
 {
     try
     {
-        counter += foward ? (counter + 5 > courses.Count ? 0 : 5 ):( counter - 5 < 0 ? 0 : -5);
+        counter += foward ? (counter + 5 >= courses.Count ? 0 : 5 ):( counter - 5 < 0 ? 0 : -5);
         IAsyncEnumerable<Course> someCourses = GetCourses(0 + counter, 5 + counter);
 
         string str = "";
 
         await foreach (var course in someCourses)
         {
-            str += $"Назва: {course.Name}\nЦіна: {course.Cost}\tРейтинг {course.Rating}\n\n";
+            str += $"Назва: {course.Name}\nЦіна: {course.Cost}\nРейтинг {course.Rating}\n\n";
         }
         return str;
     }

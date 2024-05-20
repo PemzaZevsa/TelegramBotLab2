@@ -40,9 +40,10 @@
               "RelativeDocumentMoniker": "ConsoleApp1\\Course.cs",
               "ToolTip": "C:\\Users\\Pemza\\source\\repos\\DOTNET_Lab2\\ConsoleApp1\\Course.cs",
               "RelativeToolTip": "ConsoleApp1\\Course.cs",
-              "ViewState": "AQIAAFMAAAAAAAAAAAAWwGIAAAAAAAAA",
+              "ViewState": "AQIAADYAAAAAAAAAAAAIwGIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T09:41:04.184Z"
+              "WhenOpened": "2024-05-07T09:41:04.184Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -52,7 +53,7 @@
               "RelativeDocumentMoniker": "ConsoleApp1\\Program.cs",
               "ToolTip": "C:\\Users\\Pemza\\source\\repos\\DOTNET_Lab2\\ConsoleApp1\\Program.cs",
               "RelativeToolTip": "ConsoleApp1\\Program.cs",
-              "ViewState": "AQIAAHgBAAAAAAAAAAAmwNYBAAA7AAAA",
+              "ViewState": "AQIAAPMBAAAAAAAAAAAiwI4AAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-25T15:27:52.831Z",
               "EditorCaption": ""
